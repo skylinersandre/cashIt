@@ -1,0 +1,13 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Copyright © ${date?date?string("yyyy")}
+${licensePrefix}
+${licensePrefix}André Göller https://github.com/skylinersandre
+${licensePrefix}Tim Schneider https://github.com/DerStimmler
+${licensePrefix}
+${licensePrefix}Dieser Quellcode ist lizenziert unter einer
+${licensePrefix}Creative Commons Namensnennung 4.0 International Lizenz.
+<#if licenseLast??>
+${licenseLast}
+</#if>
