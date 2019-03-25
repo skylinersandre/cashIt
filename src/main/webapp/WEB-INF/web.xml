@@ -9,21 +9,21 @@
             30
         </session-timeout>
     </session-config>
-    
+
     <!--
         Authentifizierung / Authorisierung
         ==================================
-        
+
         Alle URLs, die mit /app/ beginnen, können nur aufgerufen werden,
         wenn der Anwender sich mit einem gültigen Benutzer eingeloggt hat.
         Der Versuch, eine solche Seite aufzrufen, ohne eingeloggt zu sein,
         führt automatisch zur Login-Seite.
-        
+
         Vgl. https://stackoverflow.com/questions/3134228/restrict-jsp-servlet-access-to-specific-users-only/3134323#3134323
         Vgl. https://docs.oracle.com/javaee/7/tutorial/security-advanced003.htm
         Vgl. https://dzone.com/articles/jdbc-realm-and-form-based
     -->
-    
+
     <security-constraint>
         <display-name>
             Geschützter Bereich für angemeldete Benutzer
@@ -35,7 +35,7 @@
             <web-resource-name>todo-app</web-resource-name>
             <url-pattern>/app/*</url-pattern>
         </web-resource-collection>
-        
+
         <!--
             Ein Benutzer muss die Rolle "app-user" besitzen, um die
             Seiten aufrufen zu können.
@@ -43,7 +43,7 @@
         <auth-constraint>
             <role-name>app-user</role-name>
         </auth-constraint>
-        
+
         <!--
             Sicherstellen, dass nur verschlüsselte Verbindungen via HTTPS
             zugelassen werden. Unverschlüsselte HTTP-Anfragen werden auf
@@ -68,7 +68,7 @@
         </description>
         <role-name>app-user</role-name>
     </security-role>
-    
+
     <!--
         Definition der JSP-Dateien mit dem Loginformular und einer Fehlerseite,
         falls der Anwender sich vertippt.
@@ -76,10 +76,19 @@
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>todo-app</realm-name>
-        
+
         <form-login-config>
             <form-login-page>/WEB-INF/login/login.jsp</form-login-page>
             <form-error-page>/WEB-INF/login/error.jsp</form-error-page>
         </form-login-config>
     </login-config>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/403</location>
+    </error-page>
 </web-app>

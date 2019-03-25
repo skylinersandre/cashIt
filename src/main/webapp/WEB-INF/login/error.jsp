@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Copyright © 2018 Dennis Schulmeister-Zimolong
 
     E-Mail: dhbw@windows3.de
@@ -19,18 +19,21 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-        <link rel="stylesheet" href="<c:url value="/css/login.css"/>" />
+
     </jsp:attribute>
 
     <jsp:attribute name="menu">
-        <div class="menuitem">
-            <a href="<c:url value="/logout/"/>">Nochmal versuchen</a>
-        </div>
+
     </jsp:attribute>
 
-    <jsp:attribute name="content">
-        <p>
-            Das hat leider nicht geklappt. 🐻
-        </p>
+    <jsp:attribute name="main">
+        <div class="container col-md-4">
+            <div class="card card-login mx-auto mt-5">
+                <div class="row card-header justify-content-center">Benutzerdaten nicht korrekt!</div>
+                <div class="row card-body justify-content-center">
+                    <a class="btn btn-labeled btn-dark" href="<c:url value="/login/"/>">Erneut versuchen </a>
+                </div>
+            </div>
+        </div>
     </jsp:attribute>
 </template:base>
