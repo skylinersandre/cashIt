@@ -41,6 +41,6 @@ Copyright
 Dieses Projekt ist lizenziert unter
 [_Creative Commons Namensnennung 4.0 International_](http://creativecommons.org/licenses/by/4.0/)
 
-© 2018 – 2019 [André Göller] (https://github.com/skylinersandre), [Tim Schneider] (https://github.com/DerStimmler) <br/>
+© 2018 – 2019 [André Göller](https://github.com/skylinersandre), [Tim Schneider](https://github.com/DerStimmler) <br/>
 
 
