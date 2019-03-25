@@ -54,6 +54,14 @@ public class User implements Serializable {
     @Transient
     private final Password password = new Password();
 
+    @Column(name = "VORNAME", length = 64)
+    @NotNull(message = "Bitte geben Sie einen Vornamen ein!")
+    private String vorname = "";
+
+    @Column(name = "NACHNAME", length = 64)
+    @NotNull(message = "Bitte geben Sie einen Nachnamen ein!")
+    private String nachname = "";
+
     @Column(name = "PASSWORD_HASH", length = 64)
     @NotNull(message = "Das Passwort darf nicht leer sein.")
     private String passwordHash;
@@ -73,8 +81,10 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String username, String password) {
+    public User(String username, String vorname, String nachname, String password) {
         this.username = username;
+        this.vorname = vorname;
+        this.nachname = nachname;
         this.password.password = password;
         this.passwordHash = this.hashPassword(password);
     }
@@ -91,6 +101,22 @@ public class User implements Serializable {
 
     public List<Task> getTasks() {
         return tasks;
+    }
+
+    public String getVorname() {
+        return vorname;
+    }
+
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
+    }
+
+    public String getNachname() {
+        return nachname;
+    }
+
+    public void setNachname(String nachname) {
+        this.nachname = nachname;
     }
 
     public void setTasks(List<Task> tasks) {
