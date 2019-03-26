@@ -49,7 +49,7 @@
                         <input class="btn btn-primary btn-block" type="submit" value="Einloggen">
                     </form>
                     <div class="text-center">
-                        <a class="d-block small mt-3" href="<c:url value="/signup/"/>">Registrieren</a>
+                        <a class="d-block small mt-3" href="<c:url value="/signup/"/>">Noch kein Account? Hier registrieren!</a>
                     </div>
                 </div>
             </div>

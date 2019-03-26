@@ -25,7 +25,7 @@ wie folgt strukturiert:
  * **Persistence Entities** modellieren das Datenmodell und werden für sämtliche Datenbankzugriffe genutzt.
  * **Java Server Pages** sowie verschiedene statische Dateien bilden die View und generieren den
    auf dem Bildschirm angezeigten HTML-Code.
- * **REST-Webserivce** dient zum auslesen von Datensätzen.
+ * **REST-Webservice** dient zum auslesen von Datensätzen.
 
 Folgende Entwicklungswerkzeuge kommen dabei zum Einsatz:
 

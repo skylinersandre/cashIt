@@ -1,9 +1,9 @@
 /*
  * Copyright © 2019 Dennis Schulmeister-Zimolong
- * 
+ *
  * E-Mail: dhbw@windows3.de
  * Webseite: https://www.wpvs.de/
- * 
+ *
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
@@ -38,11 +38,11 @@ public class DashboardServlet extends HttpServlet {
         // Dashboard-Rubriken und Kacheln erzeugen und im Request Context ablegen
         List<DashboardSection> sections = new ArrayList<>();
         request.setAttribute("sections", sections);
-        
+
         taskContent.createDashboardContent(sections);
 
         // Anfrage an die JSP weiterleiten
-        request.getRequestDispatcher("/WEB-INF/dashboard/dashboard.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/app/dashboard/dashboard.jsp").forward(request, response);
     }
 
 }
