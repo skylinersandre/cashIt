@@ -21,7 +21,7 @@ import javax.persistence.PersistenceContext;
  * Spezielle EJB zum Anlegen eines Benutzers und Aktualisierung des Passworts.
  */
 @Stateless
-public class UserBean {
+public class UserBean extends EntityBean<User, String> {
 
     @PersistenceContext
     EntityManager em;
@@ -29,6 +29,13 @@ public class UserBean {
     @Resource
     EJBContext ctx;
 
+    //<editor-fold defaultstate="collapsed" desc="Konstruktor">
+    public UserBean() {
+        super(User.class);
+    }
+
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Weitere Methoden">
     /**
      * Gibt das Datenbankobjekt des aktuell eingeloggten Benutzers zurück,
      *
@@ -114,5 +121,5 @@ public class UserBean {
             super(message);
         }
     }
-
+//</editor-fold>
 }

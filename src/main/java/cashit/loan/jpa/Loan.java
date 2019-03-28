@@ -28,10 +28,10 @@ public class Loan implements Serializable {
     private double amount;
 
     @NotNull(message = "Bitte geben Sie ein Transaktionsdatum in der Form DD.MM.YYYY an")
-    private Date date;
+    private Date loanDate;
 
     @NotNull(message = "Bitte geben Sie eine Transaktionszeit in der Form HH:MM an")
-    private Time time;
+    private Time loanTime;
 
     @NotNull(message = "Es muss einen Zahler geben")
     private User payer;
@@ -45,16 +45,16 @@ public class Loan implements Serializable {
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public Loan(double amount, Date date, Time time, User payer, User receiver) {
         this.amount = amount;
-        this.date = date;
-        this.time = time;
+        this.loanDate = date;
+        this.loanTime = time;
         this.payer = payer;
         this.receiver = receiver;
     }
 
     public Loan() {
         this.amount = 0;
-        this.date = null;
-        this.time = null;
+        this.loanDate = null;
+        this.loanTime = null;
         this.payer = null;
         this.receiver = null;
     }
@@ -77,20 +77,20 @@ public class Loan implements Serializable {
         this.amount = amount;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getLoanDate() {
+        return loanDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setLoanDate(Date loanDate) {
+        this.loanDate = loanDate;
     }
 
-    public Time getTime() {
-        return time;
+    public Time getLoanTime() {
+        return loanTime;
     }
 
-    public void setTime(Time time) {
-        this.time = time;
+    public void setLoanTime(Time loanTime) {
+        this.loanTime = loanTime;
     }
 
     public User getPayer() {
