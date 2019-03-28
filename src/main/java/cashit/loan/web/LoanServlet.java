@@ -1,12 +1,3 @@
-/*
- * Copyright © 2018 Dennis Schulmeister-Zimolong
- *
- * E-Mail: dhbw@windows3.de
- * Webseite: https://www.wpvs.de/
- *
- * Dieser Quellcode ist lizenziert unter einer
- * Creative Commons Namensnennung 4.0 International Lizenz.
- */
 package cashit.loan.web;
 
 import cashit.common.ejb.UserBean;
@@ -94,10 +85,8 @@ public class LoanServlet extends HttpServlet {
         double amount = Double.parseDouble(request.getParameter("cash_amount"));
         Date dueDate = FormatUtils.parseDate(request.getParameter("cash_date"));
         Time dueTime = FormatUtils.parseTime(request.getParameter("cash_time"));
-        String payername = request.getParameter("cash_payer");
-        User payer = this.userBean.findById(payername);
-        String receivername = request.getParameter("cash_receiver");
-        User receiver = this.userBean.findById(receivername);
+        User payer = this.userBean.findById(request.getParameter("cash_payer"));
+        User receiver = this.userBean.findById(request.getParameter("cash_receiver"));
         return new Loan(
                 amount,
                 dueDate,

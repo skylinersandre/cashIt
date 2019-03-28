@@ -19,7 +19,7 @@
 
     <jsp:attribute name="main">
         <div class="container">
-            <div class="card card-register mx-auto mt-5">
+            <div class="card mx-auto mt-5">
                 <div class="card-header">Loan erstellen</div>
                 <div class="card-body">
                     <form method="post" class="stacked">
@@ -27,7 +27,7 @@
                         <input type="hidden" name="csrf_token" value="${csrf_token}">
                         <%-- Eingabefelder --%>
                         <div class="form-group">
-                            <select class="js-example-basic-single form-control w-25" name="cash_payer" id="payerSelectCreateLoan" required="required">
+                            <select class="js-example-basic-single js-basic-single-payer form-control w-25" name="cash_payer" id="payerSelectCreateLoan" required="required">
                                 <option></option>
                                 <c:forEach items="${users}" var="user">
                                     <option value="${user.username}">${user.username}</option>
@@ -35,15 +35,18 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <select class="js-example-basic-single form-control w-25" name="cash_receiver" id="receiverSelectCreateLoan" required="required">
+                            <select class="js-example-basic-single js-basic-single-receiver form-control w-25" name="cash_receiver" id="receiverSelectCreateLoan" required="required">
                                 <option></option>
                                 <c:forEach items="${users}" var="user">
                                     <option value="${user.username}">${user.username}</option>
                                 </c:forEach>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <input type="number" min="0.00" step="0.01" class="form-control" name="cash_amount" value="${cash_form.values["cash_amount"][0]}" autofocus="autofocus" required="required" placeholder="Betrag">
+                        <div class="input-group form-group">
+                            <input type="number" min="0.01" step="0.01" class="form-control" name="cash_amount" value="${cash_form.values["cash_amount"][0]}" autofocus="autofocus" required="required" placeholder="Betrag">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="form-row">

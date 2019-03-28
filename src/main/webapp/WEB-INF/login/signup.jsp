@@ -25,9 +25,7 @@
     </jsp:attribute>
 
     <jsp:attribute name="menu">
-        <div class="menuitem">
-            <a href="<c:url value="/logout/"/>">Einloggen</a>
-        </div>
+
     </jsp:attribute>
 
     <jsp:attribute name="main">
@@ -49,13 +47,13 @@
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="text" class="form-control" name="signup_vorname" value="${signup_form.values["signup_vorname"][0]}" placeholder="Vorname" required="required">
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="text" class="form-control" name="signup_nachname" value="${signup_form.values["signup_nachname"][0]}" placeholder="Nachname" required="required">
                         </div>
