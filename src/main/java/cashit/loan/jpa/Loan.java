@@ -42,7 +42,7 @@ public class Loan implements Serializable {
     @OneToOne
     private User receiver;
 
-    @OneToMany(mappedBy = "transaction", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "loan", fetch = FetchType.EAGER)
     List<Comment> comments = new ArrayList<>();
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">

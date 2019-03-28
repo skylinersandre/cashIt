@@ -1,14 +1,15 @@
 /*
  * Copyright © 2018 Dennis Schulmeister-Zimolong
- * 
+ *
  * E-Mail: dhbw@windows3.de
  * Webseite: https://www.wpvs.de/
- * 
+ *
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
 package cashit.common.ejb;
 
+import cashit.exceptions.EntityAlreadyExistsException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,13 +27,13 @@ public abstract class EntityBean<Entity, EntityId> {
     protected EntityManager em;
 
     private final Class<Entity> entityClass;
-    
+
     /**
-     * Dieser Konstruktor muss von der erbenden Klasse aufgerufen werden, um
-     * das Klassenobjekt der Entity zu setzen. Sonst lässt sich die Methode
+     * Dieser Konstruktor muss von der erbenden Klasse aufgerufen werden, um das
+     * Klassenobjekt der Entity zu setzen. Sonst lässt sich die Methode
      * findById() aufgrund einer Einschränkung der Java Generics hier nicht
      * typsicher definieren.
-     * 
+     *
      * @param entityClass Klasse der zugrunde liegenden Entity
      */
     public EntityBean(Class<Entity> entityClass) {
@@ -42,7 +43,7 @@ public abstract class EntityBean<Entity, EntityId> {
     /**
      * Auslesen eines eindeutigen Datensatzes anhand seiner ID bzw. seines
      * Primary Key.
-     * 
+     *
      * @param id Schlüsselwert
      * @return Gefundener Datensatz oder null
      */
@@ -50,12 +51,13 @@ public abstract class EntityBean<Entity, EntityId> {
         if (id == null) {
             return null;
         }
-        
+
         return em.find(entityClass, id);
     }
 
     /**
      * Auslesen aller Datensätze (Reihenfolge undefiniert)
+     *
      * @return Liste mit allen Datensätzen
      */
     public List<Entity> findAll() {
@@ -65,6 +67,7 @@ public abstract class EntityBean<Entity, EntityId> {
 
     /**
      * Speichern eines neuen Datensatzes.
+     *
      * @param entity Zu speichernder Datensatz
      * @return Gespeicherter Datensatz
      */
@@ -73,8 +76,18 @@ public abstract class EntityBean<Entity, EntityId> {
         return em.merge(entity);
     }
 
+    public Entity saveNew(Entity entity, EntityId id) throws EntityAlreadyExistsException {
+        if (this.findById(id) != null) {
+            throw new EntityAlreadyExistsException(this.entityClass.getName());
+        }
+
+        em.persist(entity);
+        return em.merge(entity);
+    }
+
     /**
      * Änderungen an einem vorhandenen Datensatz speichern
+     *
      * @param entity Zu speichernder Datensatz
      * @return Gespeicherter Datensatz
      */
@@ -84,6 +97,7 @@ public abstract class EntityBean<Entity, EntityId> {
 
     /**
      * Vorhandenen Datensatz löschen
+     *
      * @param entity Zu löschender Datensatz
      */
     public void delete(Entity entity) {

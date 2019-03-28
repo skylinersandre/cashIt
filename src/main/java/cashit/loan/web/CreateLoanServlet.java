@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  * Servlet für die tabellarische Auflisten der Aufgaben.
  */
 @WebServlet(name = "CreateLoanServlet", urlPatterns = {"/app/create/"})
-public class LoanServlet extends HttpServlet {
+public class CreateLoanServlet extends HttpServlet {
 
     @EJB
     private LoanBean loanBean;
