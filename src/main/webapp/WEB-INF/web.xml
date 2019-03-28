@@ -35,7 +35,7 @@
             <web-resource-name>todo-app</web-resource-name>
             <url-pattern>/app/*</url-pattern>
         </web-resource-collection>
-
+        
         <!--
             Ein Benutzer muss die Rolle "app-user" besitzen, um die
             Seiten aufrufen zu können.
@@ -85,10 +85,10 @@
 
     <error-page>
         <error-code>404</error-code>
-        <location>/404</location>
+        <location>/WEB-INF/error/404.jsp</location>
     </error-page>
     <error-page>
         <error-code>403</error-code>
-        <location>/403</location>
+        <location>/WEB-INF/error/403.jsp</location>
     </error-page>
 </web-app>
