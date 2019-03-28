@@ -43,7 +43,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="cash_amount" value="${cash_form.values["cash_amount"][0]}" autofocus="autofocus" required="required" placeholder="Betrag">
+                            <input type="number" min="0.00" step="0.01" class="form-control" name="cash_amount" value="${cash_form.values["cash_amount"][0]}" autofocus="autofocus" required="required" placeholder="Betrag">
                         </div>
                         <div class="form-group">
                             <div class="form-row">
