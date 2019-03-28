@@ -35,7 +35,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <select class="js-example-basic-single form-control w-25" name="cash_reveicer" id="receiverSelectCreateLoan" required="required">
+                            <select class="js-example-basic-single form-control w-25" name="cash_receiver" id="receiverSelectCreateLoan" required="required">
                                 <option></option>
                                 <c:forEach items="${users}" var="user">
                                     <option value="${user.username}">${user.username}</option>

@@ -85,7 +85,7 @@ public class LoanServlet extends HttpServlet {
             response.sendRedirect(request.getRequestURI());
         } else {
             this.loanBean.saveNew(loan);
-            response.sendRedirect("/app/dashboard/");
+            response.sendRedirect(request.getContextPath() + "/app/dashboard/");
         }
     }
 

@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -34,9 +35,11 @@ public class Loan implements Serializable {
     private Time loanTime;
 
     @NotNull(message = "Es muss einen Zahler geben")
+    @OneToOne
     private User payer;
 
     @NotNull(message = "Es muss einen Empfänger geben")
+    @OneToOne
     private User receiver;
 
     @OneToMany(mappedBy = "transaction", fetch = FetchType.EAGER)
