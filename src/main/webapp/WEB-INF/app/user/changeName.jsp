@@ -36,11 +36,11 @@
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="text" class="form-control mr-1" name="vorname" value="${change_form.values['vorname'][0]}" placeholder="Vorname" required="required">
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="text" class="form-control" name="nachname" value="${change_form.values['nachmame'][0]}" placeholder="Nachname" required="required">
                         </div>
