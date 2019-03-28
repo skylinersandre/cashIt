@@ -25,6 +25,8 @@
                 <div class="card-header">Name ändern</div>
                 <div class="card-body">
                     <form method="post" class="stacked">
+                        <%-- CSRF-Token --%>
+                        <input type="hidden" name="csrf_token" value="${csrf_token}">
                         <%-- Eingabefelder --%>
                         <div  class="input-group form-group">
                             <div class="input-group-prepend">
