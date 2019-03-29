@@ -42,16 +42,22 @@ public class Loan implements Serializable {
     @OneToOne
     private User receiver;
 
+    boolean payer_accept;
+
+    boolean receiver_accept;
+
     @OneToMany(mappedBy = "loan", fetch = FetchType.EAGER)
     List<Comment> comments = new ArrayList<>();
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
-    public Loan(double amount, Date date, Time time, User payer, User receiver) {
+    public Loan(double amount, Date loanDate, Time loanTime, User payer, User receiver) {
         this.amount = amount;
-        this.loanDate = date;
-        this.loanTime = time;
+        this.loanDate = loanDate;
+        this.loanTime = loanTime;
         this.payer = payer;
         this.receiver = receiver;
+        this.payer_accept = false;
+        this.receiver_accept = false;
     }
 
     public Loan() {
@@ -60,12 +66,30 @@ public class Loan implements Serializable {
         this.loanTime = null;
         this.payer = null;
         this.receiver = null;
+        this.payer_accept = false;
+        this.receiver_accept = false;
     }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Getter and Setter">
     public Long getId() {
         return id;
+    }
+
+    public boolean isPayer_accept() {
+        return payer_accept;
+    }
+
+    public void setPayer_accept(boolean payer_accept) {
+        this.payer_accept = payer_accept;
+    }
+
+    public boolean isReceiver_accept() {
+        return receiver_accept;
+    }
+
+    public void setReceiver_accept(boolean receiver_accept) {
+        this.receiver_accept = receiver_accept;
     }
 
     public void setId(Long id) {

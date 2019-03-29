@@ -42,7 +42,7 @@ public class DetailLoanServlet extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        //Angeforderter ToDo ermitteln
+        //Angeforderten Eintrag ermitteln
         long id = -1;
         String pathInfo = request.getPathInfo();
 
@@ -53,9 +53,17 @@ public class DetailLoanServlet extends HttpServlet {
                 // URL enthält keine gültige Long-Zahl
             }
         }
+
         Loan loan = loanBean.findById(id);
-        // Zurück auf ToDo Übersicht seite wenn es keinen ToDo dieser ID gibt
+
+        // Zurück zum Dashboard wenn es keinen Loan dieser ID gibt
         if (loan == null) {
+            response.sendRedirect(request.getContextPath() + "/index.html");
+            return;
+        }
+        //Zurück zum Dashboard wenn man dem Loan nicht angehörig ist
+        User currentUser = this.userBean.getCurrentUser();
+        if (!currentUser.getUsername().equals(loan.getPayer().getUsername()) && !currentUser.getUsername().equals(loan.getReceiver().getUsername())) {
             response.sendRedirect(request.getContextPath() + "/index.html");
             return;
         }
