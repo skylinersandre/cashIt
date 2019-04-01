@@ -46,7 +46,7 @@ public class Loan implements Serializable {
 
     boolean receiver_accept;
 
-    @OneToMany(mappedBy = "loan", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     List<Comment> comments = new ArrayList<>();
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">

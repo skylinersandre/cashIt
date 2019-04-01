@@ -24,7 +24,7 @@ public class LoanBean extends EntityBean<Loan, Long> {
 
     public List<Loan> findByUsername(String username) {
         try {
-            return em.createQuery("SELECT t FROM Loan t WHERE t.username = :username")
+            return em.createQuery("SELECT t FROM Loan t WHERE t.payer.username = :username OR t.receiver.username = :username")
                     .setParameter("username", username)
                     .getResultList();
         } catch (NoResultException ex) {

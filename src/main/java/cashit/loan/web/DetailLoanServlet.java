@@ -100,9 +100,10 @@ public class DetailLoanServlet extends HttpServlet {
         User currentUser = this.userBean.getCurrentUser();
         Loan loan = loanBean.findById(id);
         String text = request.getParameter("loan_comment");
-        if (text.trim().length() != 0) { //check if comment only consists of spaces
-            Comment comment = new Comment(currentUser, loan, text);
-            this.commentBean.saveNew(comment, id);
+        if (text.trim().length() != 0 && loan != null) { //check if comment only consists of spaces
+            Comment comment = new Comment(currentUser, text);
+            loan.getComments().add(comment);
+            loanBean.update(loan);
         }
 
         response.sendRedirect(request.getRequestURI());

@@ -34,9 +34,6 @@ public class Comment implements Serializable {
     @NotNull(message = "Der Kommentar muss einem Beutzer zugeordnet werden!")
     private User user;
 
-    @ManyToOne
-    private Loan loan;
-
     @Lob //text of a comment can be greater than 255 chars
     @NotNull(message = "Bitte geben Sie einen Kommentar ein!")
     private String commentText;
@@ -46,14 +43,12 @@ public class Comment implements Serializable {
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public Comment() {
         this.user = null;
-        this.loan = null;
         this.commentText = "";
         this.commentTimestamp = null;
     }
 
-    public Comment(User user, Loan transaction, String commentText) {
+    public Comment(User user, String commentText) {
         this.user = user;
-        this.loan = transaction;
         this.commentText = commentText;
         this.commentTimestamp = new Timestamp(System.currentTimeMillis());
     }
@@ -74,14 +69,6 @@ public class Comment implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Loan getLoan() {
-        return loan;
-    }
-
-    public void setTodo(Loan transaction) {
-        this.loan = transaction;
     }
 
     public String getCommentText() {
