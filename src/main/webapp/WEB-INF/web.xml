@@ -35,7 +35,13 @@
             <web-resource-name>todo-app</web-resource-name>
             <url-pattern>/app/*</url-pattern>
         </web-resource-collection>
-        
+
+
+        <web-resource-collection>
+            <web-resource-name>BASIC auth path</web-resource-name>
+            <url-pattern>/api/*</url-pattern>
+        </web-resource-collection>
+
         <!--
             Ein Benutzer muss die Rolle "app-user" besitzen, um die
             Seiten aufrufen zu können.
@@ -91,4 +97,17 @@
         <error-code>403</error-code>
         <location>/WEB-INF/error/403.jsp</location>
     </error-page>
+
+    <filter>
+        <filter-name>BasicLoginFilter</filter-name>
+        <filter-class>cashit.common.web.BasicLoginFilter</filter-class>
+        <init-param>
+            <param-name>role-names-comma-sep</param-name>
+            <param-value>app-user</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>BasicLoginFilter</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
 </web-app>

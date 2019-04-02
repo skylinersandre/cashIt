@@ -45,6 +45,10 @@ public class UserBean extends EntityBean<User, String> {
         return this.em.find(User.class, this.ctx.getCallerPrincipal().getName());
     }
 
+    public User findByUsername(String username) {
+        return em.find(User.class, username);
+    }
+
     /**
      *
      * @param username
