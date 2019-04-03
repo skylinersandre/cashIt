@@ -43,4 +43,24 @@ public class DashboardServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/app/dashboard/dashboard.jsp").forward(request, response);
     }
 
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        if (request.getParameter("payer_accept") != null) {
+            long loanId = Long.parseLong(request.getParameter("payer_accept"));
+            Loan loan = loanBean.findById(loanId);
+            loan.setPayer_accept(true);
+            loanBean.update(loan);
+
+        }
+        if (request.getParameter("receiver_accept") != null) {
+            long loanId = Long.parseLong(request.getParameter("receiver_accept"));
+            Loan loan = loanBean.findById(loanId);
+            loan.setReceiver_accept(true);
+            loanBean.update(loan);
+        }
+        response.sendRedirect(request.getRequestURI());
+    }
+
 }

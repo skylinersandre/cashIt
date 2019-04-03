@@ -43,10 +43,10 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <span id="overview_Positive" class="text-success float-left h1 ml-4">+ ${utils.formatDouble(total_Receive)}</span>
+                            <span id="overview_Positive" class="text-success float-left h1 ml-4">+ ${utils.formatDouble(total_Receive)} €</span>
                         </div>
                         <div class="col">
-                            <span id="overview_Negative" class="text-danger float-right h1 mr-4">- ${utils.formatDouble(total_Pay)}</span>
+                            <span id="overview_Negative" class="text-danger float-right h1 mr-4">- ${utils.formatDouble(total_Pay)} €</span>
                         </div>
                     </div>
                     <div class="row">
@@ -76,7 +76,7 @@
                                                 ${utils.formatDate(loan.loanDate)}
                                             </div>
                                             <div class="col">
-                                                ${utils.formatTime(loan.loanTime)}
+                                                ${utils.formatTime(loan.loanTime)} Uhr
                                             </div>
                                         </div>
                                         <div class="row m-0">
@@ -124,7 +124,7 @@
                                                 ${utils.formatDate(loan.loanDate)}
                                             </div>
                                             <div class="col">
-                                                ${utils.formatTime(loan.loanTime)}
+                                                ${utils.formatTime(loan.loanTime)} Uhr
                                             </div>
                                         </div>
                                         <div class="row m-0">
@@ -174,7 +174,7 @@
                                                 ${utils.formatDate(loan.loanDate)}
                                             </div>
                                             <div class="col">
-                                                ${utils.formatTime(loan.loanTime)}
+                                                ${utils.formatTime(loan.loanTime)} Uhr
                                             </div>
                                         </div>
                                         <div class="row m-0">
