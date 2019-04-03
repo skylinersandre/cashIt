@@ -65,7 +65,7 @@ public class CreateLoanServlet extends HttpServlet {
         Loan loan = null;
         List<String> errors = new ArrayList<>();
         HttpSession session = request.getSession();
-        if (request.getParameter("cash_payer") == request.getParameter("cash_receiver")) {
+        if (request.getParameter("cash_payer").equals(request.getParameter("cash_receiver"))) {
             errors.add("Bitte unterschiedliche Benutzer angeben");
         } else {
             loan = this.createLoan(request);

@@ -51,8 +51,15 @@
                     </div>
                     <div class="row">
                         <div id="overview_Progress" class="progress w-100">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: ${100 /(total_Pay + total_Receive) * total_Receive}%" aria-valuenow="${total_Receive}" aria-valuemin="0" aria-valuemax="${total_Pay + total_Receive}">+ ${utils.formatDouble(total_Receive)} €</div>
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: ${100 /(total_Pay + total_Receive) * total_Pay}%" aria-valuenow="${total_Pay}" aria-valuemin="0" aria-valuemax="${total_Pay + total_Receive}">- ${utils.formatDouble(total_Pay)} €</div>
+                            <c:choose>
+                                <c:when test="${(total_Pay + total_Receive) eq 0}">
+                                    <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: ${100 /(total_Pay + total_Receive) * total_Receive}%" aria-valuenow="${total_Receive}" aria-valuemin="0" aria-valuemax="${total_Pay + total_Receive}">+ ${utils.formatDouble(total_Receive)} €</div>
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: ${100 /(total_Pay + total_Receive) * total_Pay}%" aria-valuenow="${total_Pay}" aria-valuemin="0" aria-valuemax="${total_Pay + total_Receive}">- ${utils.formatDouble(total_Pay)} €</div>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
