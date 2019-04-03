@@ -10,7 +10,7 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>REST Test</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -54,9 +54,13 @@ Creative Commons Namensnennung 4.0 International Lizenz.
 
             function printResults(results) {
                 let result = "";
-                results.forEach(loan => {
-                    result += JSON.stringify(loan, null, 2) + "<br>";
-                });
+                if (Array.isArray(results)) {
+                    results.forEach(loan => {
+                        result += JSON.stringify(loan, null, 2) + "<br>";
+                    });
+                } else {
+                    result = JSON.stringify(results, null, 2);
+                }
                 document.getElementById("results").innerHTML = result;
             }
 
