@@ -30,9 +30,15 @@ public class LoanCollection {
     LoanBean loanBean;
 
     @GET
+    @Transactional
+    public List<Loan> getAllLoans(@PathParam("username") String username) {
+        return this.loanBean.findAll();
+    }
+
+    @GET
     @Path("user/{username}")
     @Transactional
-    public List<Loan> getLoans(@PathParam("username") String username) {
+    public List<Loan> getLoansByUsername(@PathParam("username") String username) {
         return this.loanBean.findByUsername(username);
     }
 }

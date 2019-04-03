@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+Copyright © 2019
+
+André Göller https://github.com/skylinersandre
+Tim Schneider https://github.com/DerStimmler
+
+Dieser Quellcode ist lizenziert unter einer
+Creative Commons Namensnennung 4.0 International Lizenz.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        Username*: <input type="text" id="user_username">
+        Password*: <input type="password" id="user_password">
+        <br>
+        <hr>
+        <br>
+        Username: <input type="text" id="username"><button type="button" id="getLoansByUsername">Get Loans of User</button>
+        <br>
+        <br>
+        ID: <input type="text" id="id"><button type="button" id="getLoansById">Get Loan by ID</button>
+        <br>
+        <br>
+        <button type="button" id="getAllLoans">Get all Loans</button>
+        <br>
+        <hr>
+        <h3>Results:</h3>
+        <pre id="results"></pre>
+
+        <script>
+            function getLoansByUsername() {
+                let username = document.getElementById("username").value;
+                var url = `https://localhost:8443/cashIt/api/Loans/user/${username}/`;
+                getResults(url);
+            }
+
+            function getLoansById() {
+                let id = parseInt(document.getElementById("id").value);
+                console.log(id);
+                var url = `https://localhost:8443/cashIt/api/Loans/id/${id}/`;
+                console.log(url);
+                getResults(url);
+            }
+
+            function getAllLoans() {
+                var url = `https://localhost:8443/cashIt/api/Loans/`;
+                getResults(url);
+            }
+
+            function printResults(results) {
+                let result = "";
+                results.forEach(loan => {
+                    result += JSON.stringify(loan, null, 2) + "<br>";
+                });
+                document.getElementById("results").innerHTML = result;
+            }
+
+            async function getResults(url) {
+                let user_username = document.getElementById("user_username").value;
+                let user_password = document.getElementById("user_password").value;
+                let authorization = btoa(`${user_username}:${user_password}`);
+
+                if (user_username === "" || user_password == "") {
+                    alert("Please enter Username and Password of your Account!");
+                    return;
+                }
+                try {
+                    let response = await fetch(url, {
+                        method: "get",
+                        headers: {
+                            "accept": "application/json",
+                            "Authorization": `Basic ${authorization}`
+                        }
+                    });
+                    let loans = await response.json();
+                    printResults(loans);
+                } catch (e) {
+                    alert("Couldn't get results from REST Webservice.\nAre your account credentials correct?\nDoes the ID or username exist?");
+                    return;
+                }
+            }
+
+            document.getElementById("getLoansByUsername").addEventListener('click', getLoansByUsername);
+            document.getElementById("getLoansById").addEventListener('click', getLoansById);
+            document.getElementById("getAllLoans").addEventListener('click', getAllLoans);
+        </script>
+    </body>
+</html>

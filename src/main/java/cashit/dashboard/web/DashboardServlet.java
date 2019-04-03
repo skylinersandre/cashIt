@@ -9,10 +9,10 @@
  */
 package cashit.dashboard.web;
 
-import cashit.dashboard.ejb.DashboardContentProvider;
-import cashit.dashboard.ejb.DashboardSection;
+import cashit.common.ejb.UserBean;
+import cashit.loan.ejb.LoanBean;
+import cashit.loan.jpa.Loan;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -27,20 +27,18 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/app/dashboard/"})
 public class DashboardServlet extends HttpServlet {
 
-    // Kacheln für Aufgaben
-    @EJB(beanName = "tasks")
-    DashboardContentProvider taskContent;
+    @EJB
+    LoanBean loanBean;
+
+    @EJB
+    UserBean userBean;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Dashboard-Rubriken und Kacheln erzeugen und im Request Context ablegen
-        List<DashboardSection> sections = new ArrayList<>();
-        request.setAttribute("sections", sections);
-
-        taskContent.createDashboardContent(sections);
-
+        List<Loan> loans = loanBean.findByUsername(userBean.getCurrentUser().getUsername());
+        request.setAttribute("loans", loans);
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/app/dashboard/dashboard.jsp").forward(request, response);
     }
