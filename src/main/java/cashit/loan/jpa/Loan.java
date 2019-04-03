@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -46,7 +47,7 @@ public class Loan implements Serializable {
 
     boolean receiver_accept;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Comment> comments = new ArrayList<>();
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">

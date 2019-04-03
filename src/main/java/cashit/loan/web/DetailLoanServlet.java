@@ -61,17 +61,15 @@ public class DetailLoanServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/index.html");
             return;
         }
-        //Zurück zum Dashboard wenn man dem Loan nicht angehörig ist
+        //Zur 403 Seite wenn man dem Loan nicht angehörig ist
         User currentUser = this.userBean.getCurrentUser();
         if (!currentUser.getUsername().equals(loan.getPayer().getUsername()) && !currentUser.getUsername().equals(loan.getReceiver().getUsername())) {
-            response.sendRedirect(request.getContextPath() + "/index.html");
+            response.sendRedirect(request.getContextPath() + "/403");
             return;
         }
-        List<Comment> comments = commentBean.findByLoanId(id);
 
         request.setAttribute("loan", loan);
-        request.setAttribute("comments", comments);
-        request.getRequestDispatcher("/WEB-INF/app/detailEintrag.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/app/detailLoan.jsp").forward(request, response);
     }
 
     @Override

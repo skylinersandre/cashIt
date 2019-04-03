@@ -60,7 +60,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ${pageContext.request.requestURI eq '/cashIt/WEB-INF/app/createEintrag.jsp' ? ' active' : ''}" href="<c:url value="/app/create/"/>">Eintrag erstellen</a>
+                        <a class="nav-link ${pageContext.request.requestURI eq '/cashIt/WEB-INF/app/createLoan.jsp' ? ' active' : ''}" href="<c:url value="/app/create/"/>">Eintrag erstellen</a>
                     </li>
                     <jsp:invoke fragment="menu"/>
                     <!-- /Navbar Items -->

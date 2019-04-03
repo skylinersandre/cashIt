@@ -44,7 +44,7 @@ public class CreateLoanServlet extends HttpServlet {
         List<User> existingUsers = this.userBean.findAll();
         session.setAttribute("users", existingUsers);
         // Anfrage an die JSP weiterleiten
-        request.getRequestDispatcher("/WEB-INF/app/createEintrag.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/app/createLoan.jsp").forward(request, response);
         session.removeAttribute("cash_form");
     }
 

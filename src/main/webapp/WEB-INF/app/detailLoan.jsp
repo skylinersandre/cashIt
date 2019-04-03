@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <%-- Ausgabefelder --%>
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <b>Payer:</b>
                         </div>
                         <div class="col">
@@ -36,7 +36,15 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
+                            <b>Payer accept:</b>
+                        </div>
+                        <div class="col">
+                            <input type="checkbox" disabled ${loan.payer_accept eq true ? "checked" : ""}>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
                             <b>Receiver:</b>
                         </div>
                         <div class="col">
@@ -44,7 +52,15 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
+                            <b>Receiver accept:</b>
+                        </div>
+                        <div class="col">
+                            <input type="checkbox" disabled ${loan.receiver_accept eq true ? "checked" : ""}>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
                             <b>Datum:</b>
                         </div>
                         <div class="col">
@@ -52,7 +68,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <b>Zeit:</b>
                         </div>
                         <div class="col">
@@ -60,7 +76,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-lg-3">
                             <b>Betrag:</b>
                         </div>
                         <div class="col">
@@ -81,7 +97,7 @@
 
         <%-- Kommentare --%>
         <div class="container chat-container mt-7">
-            <c:forEach items="${comments}" var="comment">
+            <c:forEach items="${loan.comments}" var="comment">
                 <div class="chat ${pageContext.request.userPrincipal.name eq comment.user.username ? 'me' : 'you'}">
                     <p>${comment.commentText}</p>
                     <span class="time"><i class="far fa-clock mr-2 ml-3"></i><fmt:formatDate pattern = "dd.MM.yyyy HH:mm" value = "${comment.commentTimestamp}"/></span>
