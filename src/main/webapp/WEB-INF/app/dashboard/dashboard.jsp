@@ -162,7 +162,7 @@
                             <!-- Loans -->
                             <c:forEach items="${loans}" var="loan">
                                 <c:if test="${loan.payer_accept eq true and loan.receiver_accept eq true}">
-                                    <div class="card bg-muted mt-1 mb-1 cursor-pointer" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
+                                    <div class="card bg-muted text-muted mt-1 mb-1 cursor-pointer" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
                                         <div class="row m-0">
                                             <div class="col-md-1">
                                                 ${loan.payer.username eq pageContext.request.userPrincipal.name ? "<i class=\"fas fa-minus text-danger\"></i>" : "<i class=\"fas fa-plus text-success\"></i>"}
