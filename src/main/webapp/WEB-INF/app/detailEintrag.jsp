@@ -19,6 +19,9 @@
     </jsp:attribute>
 
     <jsp:attribute name="main">
+
+        <jsp:useBean id="utils" class="cashit.common.web.WebUtils"/>
+
         <div class="container">
             <div class="card card-register mx-auto mt-5">
                 <%-- Inhalt ToDo --%>
@@ -45,7 +48,7 @@
                             <b>Datum:</b>
                         </div>
                         <div class="col">
-                            <fmt:formatDate pattern = "dd.MM.yyyy" value = "${loan.loanDate}"/>
+                            ${utils.formatDate(loan.loanDate)}
                         </div>
                     </div>
                     <div class="row">
@@ -53,7 +56,7 @@
                             <b>Zeit:</b>
                         </div>
                         <div class="col">
-                            <fmt:formatDate pattern = "HH:mm" value = "${loan.loanTime}"/> Uhr
+                            ${utils.formatTime(loan.loanTime)} Uhr
                         </div>
                     </div>
                     <div class="row">
@@ -61,7 +64,7 @@
                             <b>Betrag:</b>
                         </div>
                         <div class="col">
-                            ${loan.amount} €
+                            ${utils.formatDouble(loan.amount)} €
                         </div>
                     </div>
                 </div>

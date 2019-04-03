@@ -33,25 +33,26 @@
             </c:if>
         </c:forEach>
 
+        <jsp:useBean id="utils" class="cashit.common.web.WebUtils"/>
 
         <div id="mainContainer" class="container w-100">
-            <div id="overview" class="card bg-light mb-2 flex-nowrap">
+            <div id="overview" class="card bg-light mb-4 flex-nowrap">
                 <div class="card-header bg-light">
                     Dashboard
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <span id="overview_Positive" class="text-success float-left h1 ml-4">+ ${total_Receive}</span>
+                            <span id="overview_Positive" class="text-success float-left h1 ml-4">+ ${utils.formatDouble(total_Receive)}</span>
                         </div>
                         <div class="col">
-                            <span id="overview_Negative" class="text-danger float-right h1 mr-4">- ${total_Pay}</span>
+                            <span id="overview_Negative" class="text-danger float-right h1 mr-4">- ${utils.formatDouble(total_Pay)}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div id="overview_Progress" class="progress w-100">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: ${100 /(total_Pay + total_Receive) * total_Receive}%" aria-valuenow="${total_Receive}" aria-valuemin="0" aria-valuemax="${total_Pay + total_Receive}">+ ${total_Receive} €</div>
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: ${100 /(total_Pay + total_Receive) * total_Pay}%" aria-valuenow="${total_Pay}" aria-valuemin="0" aria-valuemax="${total_Pay + total_Receive}">- ${total_Pay} €</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: ${100 /(total_Pay + total_Receive) * total_Receive}%" aria-valuenow="${total_Receive}" aria-valuemin="0" aria-valuemax="${total_Pay + total_Receive}">+ ${utils.formatDouble(total_Receive)} €</div>
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: ${100 /(total_Pay + total_Receive) * total_Pay}%" aria-valuenow="${total_Pay}" aria-valuemin="0" aria-valuemax="${total_Pay + total_Receive}">- ${utils.formatDouble(total_Pay)} €</div>
                         </div>
                     </div>
                 </div>
@@ -64,25 +65,28 @@
                             <c:forEach items="${loans}" var="loan">
                                 <c:if test="${loan.receiver.username eq pageContext.request.userPrincipal.name and loan.payer_accept ne true and loan.receiver_accept ne true}">
                                     <div class="card bg-light mt-1 mb-1">
-                                        <div class="row">
+                                        <div class="row m-0">
                                             <div class="col-md-1">
                                                 ${loan.payer.username eq pageContext.request.userPrincipal.name ? "<i class=\"fas fa-minus text-danger\"></i>" : "<i class=\"fas fa-plus text-success\"></i>"}
                                             </div>
-                                            <div class="col-md-2 font-weight-bold">
-                                                ${loan.amount} €
+                                            <div class="col-md-3 font-weight-bold">
+                                                ${utils.formatDouble(loan.amount)} €
                                             </div>
-                                            <div class="col-md-2">
-                                                ${loan.loanDate}
+                                            <div class="col-md-4">
+                                                ${utils.formatDate(loan.loanDate)}
                                             </div>
                                             <div class="col">
-                                                ${loan.loanTime}
+                                                ${utils.formatTime(loan.loanTime)}
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col" align="center">
+                                        <div class="row m-0">
+                                            <hr class="w-75 border-white">
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-md-3" align="center">
                                                 ${loan.receiver.username}
                                             </div>
-                                            <div class="col">
+                                            <div class="col" align="center">
                                                 <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                                                     <label class="btn btn-sm btn-info ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
                                                         <input type="checkbox" name="receiver_accept" id="receiver_accept" autocomplete="off" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}> Receiver
@@ -92,7 +96,7 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col" align="center">
+                                            <div class="col-md-3" align="center">
                                                 ${loan.payer.username}
                                             </div>
                                         </div>
@@ -109,25 +113,28 @@
                             <c:forEach items="${loans}" var="loan">
                                 <c:if test="${loan.payer.username eq pageContext.request.userPrincipal.name and loan.payer_accept ne true and loan.receiver_accept ne true}">
                                     <div class="card bg-light mt-1 mb-1">
-                                        <div class="row">
+                                        <div class="row m-0">
                                             <div class="col-md-1">
                                                 ${loan.payer.username eq pageContext.request.userPrincipal.name ? "<i class=\"fas fa-minus text-danger\"></i>" : "<i class=\"fas fa-plus text-success\"></i>"}
                                             </div>
-                                            <div class="col-md-2 font-weight-bold">
-                                                ${loan.amount} €
+                                            <div class="col-md-3 font-weight-bold">
+                                                ${utils.formatDouble(loan.amount)} €
                                             </div>
-                                            <div class="col-md-2">
-                                                ${loan.loanDate}
+                                            <div class="col-md-4">
+                                                ${utils.formatDate(loan.loanDate)}
                                             </div>
                                             <div class="col">
-                                                ${loan.loanTime}
+                                                ${utils.formatTime(loan.loanTime)}
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col" align="center">
+                                        <div class="row m-0">
+                                            <hr class="w-75 border-white">
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-md-3" align="center">
                                                 ${loan.receiver.username}
                                             </div>
-                                            <div class="col">
+                                            <div class="col" align="center">
                                                 <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                                                     <label class="btn btn-sm btn-info ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
                                                         <input type="checkbox" name="receiver_accept" id="receiver_accept" autocomplete="off" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}> Receiver
@@ -137,7 +144,7 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col" align="center">
+                                            <div class="col-md-3" align="center">
                                                 ${loan.payer.username}
                                             </div>
                                         </div>
@@ -156,25 +163,28 @@
                             <c:forEach items="${loans}" var="loan">
                                 <c:if test="${loan.payer_accept eq true and loan.receiver_accept eq true}">
                                     <div class="card bg-light mt-1 mb-1">
-                                        <div class="row">
+                                        <div class="row m-0">
                                             <div class="col-md-1">
                                                 ${loan.payer.username eq pageContext.request.userPrincipal.name ? "<i class=\"fas fa-minus text-danger\"></i>" : "<i class=\"fas fa-plus text-success\"></i>"}
                                             </div>
-                                            <div class="col-md-2 font-weight-bold">
-                                                ${loan.amount} €
+                                            <div class="col-md-3 font-weight-bold">
+                                                ${utils.formatDouble(loan.amount)} €
                                             </div>
-                                            <div class="col-md-2">
-                                                ${loan.loanDate}
+                                            <div class="col-md-4">
+                                                ${utils.formatDate(loan.loanDate)}
                                             </div>
                                             <div class="col">
-                                                ${loan.loanTime}
+                                                ${utils.formatTime(loan.loanTime)}
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col" align="center">
+                                        <div class="row m-0">
+                                            <hr class="w-75 border-white">
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-md-3" align="center">
                                                 ${loan.receiver.username}
                                             </div>
-                                            <div class="col">
+                                            <div class="col" align="center">
                                                 <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
                                                     <label class="btn btn-sm btn-info ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
                                                         <input type="checkbox" name="receiver_accept" id="receiver_accept" autocomplete="off" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}> Receiver
@@ -184,7 +194,7 @@
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div class="col" align="center">
+                                            <div class="col-md-3" align="center">
                                                 ${loan.payer.username}
                                             </div>
                                         </div>

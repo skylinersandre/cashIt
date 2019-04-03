@@ -61,11 +61,16 @@ public class CreateLoanServlet extends HttpServlet {
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
+
+        Loan loan = null;
         List<String> errors = new ArrayList<>();
         HttpSession session = request.getSession();
-
-        Loan loan = this.createLoan(request);
-        errors = this.validationBean.validate(loan, errors);
+        if (request.getParameter("cash_payer") == request.getParameter("cash_receiver")) {
+            errors.add("Bitte unterschiedliche Benutzer angeben");
+        } else {
+            loan = this.createLoan(request);
+            errors = this.validationBean.validate(loan, errors);
+        }
 
         if (!errors.isEmpty()) {
             Form form = new Form();
