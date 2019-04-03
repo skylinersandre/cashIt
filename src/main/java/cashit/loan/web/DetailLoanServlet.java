@@ -16,7 +16,6 @@ import cashit.common.jpa.User;
 import cashit.loan.ejb.LoanBean;
 import cashit.loan.jpa.Loan;
 import java.io.IOException;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
