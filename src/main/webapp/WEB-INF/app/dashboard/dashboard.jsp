@@ -63,7 +63,7 @@
                         <div id="receiveLoans" class="card-body pl-0 pr-0">
                             <!-- Loans -->
                             <c:forEach items="${loans}" var="loan">
-                                <c:if test="${loan.receiver.username eq pageContext.request.userPrincipal.name and loan.payer_accept ne true and loan.receiver_accept ne true}">
+                                <c:if test="${loan.receiver.username eq pageContext.request.userPrincipal.name and (loan.payer_accept ne true or loan.receiver_accept ne true)}">
                                     <div class="card bg-light mt-1 mb-1 cursor-pointer">
                                         <div class="row m-0">
                                             <div class="col-md-1">
@@ -93,17 +93,17 @@
                                                 <div class="mx-auto">
                                                     <span style="float:left;">
                                                         <form method="post" id="receiver_Form${loan.id}" name="receiver_accept">
+                                                            <%-- CSRF-Token --%>
+                                                            <input type="hidden" name="csrf_token" value="${csrf_token}">
                                                             <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                                <input type="checkbox" name="receiver_accept" value="${loan.id}" id="receiver_accept"  ${loan.receiver_accept eq true ? "checked" : "onclick='document.getElementById('receiver_Form${loan.id}').submit();'"} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                                <input onclick="document.getElementById('receiver_Form${loan.id}').submit();" type="checkbox" name="receiver_accept" value="${loan.id}" id="receiver_accept"  ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                             </label>
                                                         </form>
                                                     </span>
                                                     <span style="float:right;">
-                                                        <form method="post" id="payer_Form${loan.id}" name="payer_accept">
-                                                            <label class="${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                                <input type="checkbox" name="payer_accept" value="${loan.id}" id="payer_accept" ${loan.payer_accept eq true ? "checked" : "onclick='document.getElementById('payer_Form${loan.id}').submit();'"} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
-                                                            </label>
-                                                        </form>
+                                                        <label class="${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
+                                                            <input type="checkbox" name="payer_accept" value="${loan.id}" id="payer_accept" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                        </label>
                                                     </span>
                                                 </div>
                                             </div>
@@ -122,7 +122,7 @@
                         <div id="payerLoans" class="card-body pl-0 pr-0">
                             <!-- Loans -->
                             <c:forEach items="${loans}" var="loan">
-                                <c:if test="${loan.payer.username eq pageContext.request.userPrincipal.name and loan.payer_accept ne true and loan.receiver_accept ne true}">
+                                <c:if test="${loan.payer.username eq pageContext.request.userPrincipal.name and (loan.payer_accept ne true or loan.receiver_accept ne true)}">
                                     <div class="card bg-light mt-1 mb-1 cursor-pointer">
                                         <div class="row m-0">
                                             <div class="col-md-1">
@@ -151,16 +151,16 @@
                                             <div class="col" align="center">
                                                 <div class="mx-auto">
                                                     <span style="float:left;">
-                                                        <form method="post" id="receiver_Form${loan.id}" name="receiver_accept">
-                                                            <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                                <input type="checkbox" name="receiver_accept" value="${loan.id}" id="receiver_accept" ${loan.receiver_accept eq true ? "checked" : "onclick='document.getElementById('receiver_Form${loan.id}"} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
-                                                            </label>
-                                                        </form>
+                                                        <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
+                                                            <input type="checkbox" name="receiver_accept" value="${loan.id}" id="receiver_accept" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                        </label>
                                                     </span>
                                                     <span style="float:right;">
                                                         <form method="post" id="payer_Form${loan.id}" name="payer_accept">
+                                                            <%-- CSRF-Token --%>
+                                                            <input type="hidden" name="csrf_token" value="${csrf_token}">
                                                             <label class="${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                                <input type="checkbox" name="payer_accept" value="${loan.id}" id="payer_accept" ${loan.payer_accept eq true ? "checked" : "onclick='document.getElementById('payer_Form${loan.id}"} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                                <input  onclick="document.getElementById('payer_Form${loan.id}').submit();" type="checkbox" name="payer_accept" value="${loan.id}" id="payer_accept" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                             </label>
                                                         </form>
                                                     </span>
@@ -212,10 +212,10 @@
                                             <div class="col" align="center">
                                                 <div class="mx-auto" >
                                                     <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="receiver_accept" value="${loan.id}" id="receiver_accept" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                        <input type="checkbox" name="receiver_accept" value="${loan.id}" id="receiver_accept" ${loan.receiver_accept eq true ? "checked disabled" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                     </label>
                                                     <label class="${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="payer_accept" value="${loan.id}" id="payer_accept" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                        <input type="checkbox" name="payer_accept" value="${loan.id}" id="payer_accept" ${loan.payer_accept eq true ? "checked disabled" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                     </label>
                                                 </div>
                                             </div>
