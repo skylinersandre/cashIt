@@ -64,7 +64,7 @@
                             <!-- Loans -->
                             <c:forEach items="${loans}" var="loan">
                                 <c:if test="${loan.receiver.username eq pageContext.request.userPrincipal.name and loan.payer_accept ne true and loan.receiver_accept ne true}">
-                                    <div class="card bg-light mt-1 mb-1 cursor-pointer" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
+                                    <div class="card bg-light mt-1 mb-1 cursor-pointer">
                                         <div class="row m-0">
                                             <div class="col-md-1">
                                                 ${loan.payer.username eq pageContext.request.userPrincipal.name ? "<i class=\"fas fa-minus text-danger\"></i>" : "<i class=\"fas fa-plus text-success\"></i>"}
@@ -78,6 +78,9 @@
                                             <div class="col">
                                                 ${utils.formatTime(loan.loanTime)}
                                             </div>
+                                            <div class="col-md-1" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
+                                                <i class="fas fa-info-circle"> </i>
+                                            </div>
                                         </div>
                                         <div class="row m-0">
                                             <hr class="w-75 border-white">
@@ -88,12 +91,20 @@
                                             </div>
                                             <div class="col" align="center">
                                                 <div class="mx-auto">
-                                                    <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="receiver_accept" id="receiver_accept" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
-                                                    </label>
-                                                    <label class="${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="payer_accept" id="payer_accept" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
-                                                    </label>
+                                                    <span style="float:left;">
+                                                        <form method="post" id="receiver_Form${loan.id}" name="receiver_accept">
+                                                            <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
+                                                                <input type="checkbox" name="receiver_accept" value="${loan.id}" id="receiver_accept"  ${loan.receiver_accept eq true ? "checked" : "onclick='document.getElementById('receiver_Form${loan.id}').submit();'"} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                            </label>
+                                                        </form>
+                                                    </span>
+                                                    <span style="float:right;">
+                                                        <form method="post" id="payer_Form${loan.id}" name="payer_accept">
+                                                            <label class="${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
+                                                                <input type="checkbox" name="payer_accept" value="${loan.id}" id="payer_accept" ${loan.payer_accept eq true ? "checked" : "onclick='document.getElementById('payer_Form${loan.id}').submit();'"} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                            </label>
+                                                        </form>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="col-md-3" align="center">
@@ -112,7 +123,7 @@
                             <!-- Loans -->
                             <c:forEach items="${loans}" var="loan">
                                 <c:if test="${loan.payer.username eq pageContext.request.userPrincipal.name and loan.payer_accept ne true and loan.receiver_accept ne true}">
-                                    <div class="card bg-light mt-1 mb-1 cursor-pointer" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
+                                    <div class="card bg-light mt-1 mb-1 cursor-pointer">
                                         <div class="row m-0">
                                             <div class="col-md-1">
                                                 ${loan.payer.username eq pageContext.request.userPrincipal.name ? "<i class=\"fas fa-minus text-danger\"></i>" : "<i class=\"fas fa-plus text-success\"></i>"}
@@ -126,6 +137,9 @@
                                             <div class="col">
                                                 ${utils.formatTime(loan.loanTime)}
                                             </div>
+                                            <div class="col-md-1" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
+                                                <i class="fas fa-info-circle"> </i>
+                                            </div>
                                         </div>
                                         <div class="row m-0">
                                             <hr class="w-75 border-white">
@@ -136,12 +150,20 @@
                                             </div>
                                             <div class="col" align="center">
                                                 <div class="mx-auto">
-                                                    <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="receiver_accept" id="receiver_accept" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
-                                                    </label>
-                                                    <label class="${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="payer_accept" id="payer_accept" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
-                                                    </label>
+                                                    <span style="float:left;">
+                                                        <form method="post" id="receiver_Form${loan.id}" name="receiver_accept">
+                                                            <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
+                                                                <input type="checkbox" name="receiver_accept" value="${loan.id}" id="receiver_accept" ${loan.receiver_accept eq true ? "checked" : "onclick='document.getElementById('receiver_Form${loan.id}"} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                            </label>
+                                                        </form>
+                                                    </span>
+                                                    <span style="float:right;">
+                                                        <form method="post" id="payer_Form${loan.id}" name="payer_accept">
+                                                            <label class="${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
+                                                                <input type="checkbox" name="payer_accept" value="${loan.id}" id="payer_accept" ${loan.payer_accept eq true ? "checked" : "onclick='document.getElementById('payer_Form${loan.id}"} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                            </label>
+                                                        </form>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="col-md-3" align="center">
@@ -162,7 +184,7 @@
                             <!-- Loans -->
                             <c:forEach items="${loans}" var="loan">
                                 <c:if test="${loan.payer_accept eq true and loan.receiver_accept eq true}">
-                                    <div class="card bg-muted text-muted mt-1 mb-1 cursor-pointer" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
+                                    <div class="card bg-muted text-muted mt-1 mb-1 cursor-pointer">
                                         <div class="row m-0">
                                             <div class="col-md-1">
                                                 ${loan.payer.username eq pageContext.request.userPrincipal.name ? "<i class=\"fas fa-minus text-danger\"></i>" : "<i class=\"fas fa-plus text-success\"></i>"}
@@ -176,6 +198,9 @@
                                             <div class="col">
                                                 ${utils.formatTime(loan.loanTime)}
                                             </div>
+                                            <div class="col-md-1" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
+                                                <i class="fas fa-info-circle"> </i>
+                                            </div>
                                         </div>
                                         <div class="row m-0">
                                             <hr class="w-75 border-white">
@@ -185,12 +210,12 @@
                                                 ${loan.receiver.username}
                                             </div>
                                             <div class="col" align="center">
-                                                <div class="mx-auto" data-toggle="buttons">
+                                                <div class="mx-auto" >
                                                     <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="receiver_accept" id="receiver_accept" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                        <input type="checkbox" name="receiver_accept" value="${loan.id}" id="receiver_accept" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                     </label>
                                                     <label class="${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="payer_accept" id="payer_accept" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                        <input type="checkbox" name="payer_accept" value="${loan.id}" id="payer_accept" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                     </label>
                                                 </div>
                                             </div>
