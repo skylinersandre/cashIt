@@ -87,12 +87,12 @@
                                                 ${loan.receiver.username}
                                             </div>
                                             <div class="col" align="center">
-                                                <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
-                                                    <label class="btn btn-sm btn-info ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="receiver_accept" id="receiver_accept" autocomplete="off" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}> Receiver
+                                                <div class="mx-auto">
+                                                    <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
+                                                        <input type="checkbox" name="receiver_accept" id="receiver_accept" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                     </label>
-                                                    <label class="btn btn-sm btn-info ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="payer_accept" id="payer_accept" autocomplete="off" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}> Payer
+                                                    <label class="${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
+                                                        <input type="checkbox" name="payer_accept" id="payer_accept" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                     </label>
                                                 </div>
                                             </div>
@@ -135,12 +135,12 @@
                                                 ${loan.receiver.username}
                                             </div>
                                             <div class="col" align="center">
-                                                <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
-                                                    <label class="btn btn-sm btn-info ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="receiver_accept" id="receiver_accept" autocomplete="off" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}> Receiver
+                                                <div class="mx-auto">
+                                                    <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
+                                                        <input type="checkbox" name="receiver_accept" id="receiver_accept" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                     </label>
-                                                    <label class="btn btn-sm btn-info ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="payer_accept" id="payer_accept" autocomplete="off" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}> Payer
+                                                    <label class="${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
+                                                        <input type="checkbox" name="payer_accept" id="payer_accept" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                     </label>
                                                 </div>
                                             </div>
@@ -185,12 +185,12 @@
                                                 ${loan.receiver.username}
                                             </div>
                                             <div class="col" align="center">
-                                                <div class="btn-group btn-group-toggle mx-auto" data-toggle="buttons">
-                                                    <label class="btn btn-sm btn-info ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="receiver_accept" id="receiver_accept" autocomplete="off" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}> Receiver
+                                                <div class="mx-auto" data-toggle="buttons">
+                                                    <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
+                                                        <input type="checkbox" name="receiver_accept" id="receiver_accept" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                     </label>
-                                                    <label class="btn btn-sm btn-info ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                        <input type="checkbox" name="payer_accept" id="payer_accept" autocomplete="off" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}> Payer
+                                                    <label class="${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
+                                                        <input type="checkbox" name="payer_accept" id="payer_accept" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                     </label>
                                                 </div>
                                             </div>
