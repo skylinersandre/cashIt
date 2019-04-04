@@ -35,15 +35,21 @@ Creative Commons Namensnennung 4.0 International Lizenz.
         <script>
             function getLoansByUsername() {
                 let username = document.getElementById("username").value;
+                if (username === "") {
+                    alert("Please enter a username!");
+                    return;
+                }
                 var url = `https://localhost:8443/cashIt/api/Loans/user/${username}/`;
                 getResults(url);
             }
 
             function getLoansById() {
                 let id = parseInt(document.getElementById("id").value);
-                console.log(id);
+                if (id === "") {
+                    alert("Please enter an id!");
+                    return;
+                }
                 var url = `https://localhost:8443/cashIt/api/Loans/id/${id}/`;
-                console.log(url);
                 getResults(url);
             }
 

@@ -71,22 +71,22 @@
                             <!-- Loans -->
                             <c:forEach items="${loans}" var="loan">
                                 <c:if test="${loan.receiver.username eq pageContext.request.userPrincipal.name and (loan.payer_accept ne true or loan.receiver_accept ne true)}">
-                                    <div class="card bg-light mt-1 mb-1 cursor-pointer">
+                                    <div class="card bg-light mt-1 mb-1">
                                         <div class="row m-0">
-                                            <div class="col-md-1">
+                                            <div class="col-md-1 pl-1 pr-0">
                                                 ${loan.payer.username eq pageContext.request.userPrincipal.name ? "<i class=\"fas fa-minus text-danger\"></i>" : "<i class=\"fas fa-plus text-success\"></i>"}
                                             </div>
                                             <div class="col-md-3 font-weight-bold">
                                                 ${utils.formatDouble(loan.amount)} €
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3 pl-0 pr-0">
                                                 ${utils.formatDate(loan.loanDate)}
                                             </div>
-                                            <div class="col">
+                                            <div class="col-md-3 pl-0 pr-0">
                                                 ${utils.formatTime(loan.loanTime)} Uhr
                                             </div>
-                                            <div class="col-md-1" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
-                                                <i class="fas fa-info-circle"> </i>
+                                            <div class="col-md float-right text-right pl-0 pr-1 cursor-pointer" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
+                                                <i class="fas fa-info-circle fa-lg"></i>&nbsp;<i class="far fa-comments ml-1 text-muted"></i><span class="text-muted">&nbsp;${fn:length(loan.comments)}</span>
                                             </div>
                                         </div>
                                         <div class="row m-0">
@@ -103,7 +103,7 @@
                                                             <%-- CSRF-Token --%>
                                                             <input type="hidden" name="csrf_token" value="${csrf_token}">
                                                             <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                                <input onclick="document.getElementById('receiver_Form${loan.id}').submit();" type="checkbox" name="receiver_accept" value="${loan.id}" id="receiver_accept"  ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                                <input onclick="document.getElementById('receiver_Form${loan.id}').submit();" type="checkbox" name="receiver_accept" value="${loan.id}" id="receiver_accept"  ${loan.receiver_accept eq true ? "checked disabled" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                             </label>
                                                         </form>
                                                     </span>
@@ -130,22 +130,22 @@
                             <!-- Loans -->
                             <c:forEach items="${loans}" var="loan">
                                 <c:if test="${loan.payer.username eq pageContext.request.userPrincipal.name and (loan.payer_accept ne true or loan.receiver_accept ne true)}">
-                                    <div class="card bg-light mt-1 mb-1 cursor-pointer">
+                                    <div class="card bg-light mt-1 mb-1">
                                         <div class="row m-0">
-                                            <div class="col-md-1">
+                                            <div class="col-md-1 pl-1 pr-0">
                                                 ${loan.payer.username eq pageContext.request.userPrincipal.name ? "<i class=\"fas fa-minus text-danger\"></i>" : "<i class=\"fas fa-plus text-success\"></i>"}
                                             </div>
                                             <div class="col-md-3 font-weight-bold">
                                                 ${utils.formatDouble(loan.amount)} €
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3 pl-0 pr-0">
                                                 ${utils.formatDate(loan.loanDate)}
                                             </div>
-                                            <div class="col">
+                                            <div class="col-md-3 pl-0 pr-0">
                                                 ${utils.formatTime(loan.loanTime)} Uhr
                                             </div>
-                                            <div class="col-md-1" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
-                                                <i class="fas fa-info-circle"> </i>
+                                            <div class="col-md float-right text-right pl-0 pr-1 cursor-pointer" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
+                                                <i class="fas fa-info-circle fa-lg"></i>&nbsp;<i class="far fa-comments ml-1 text-muted"></i><span class="text-muted">&nbsp;${fn:length(loan.comments)}</span>
                                             </div>
                                         </div>
                                         <div class="row m-0">
@@ -159,7 +159,7 @@
                                                 <div class="mx-auto">
                                                     <span style="float:left;">
                                                         <label class="${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                            <input type="checkbox" name="receiver_accept" value="${loan.id}" id="receiver_accept" ${loan.receiver_accept eq true ? "checked" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                            <input type="checkbox" name="receiver_accept" value="${loan.id}" id="receiver_accept" ${loan.receiver_accept eq true ? "checked disabled" : ""} ${loan.receiver.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                         </label>
                                                     </span>
                                                     <span style="float:right;">
@@ -167,7 +167,7 @@
                                                             <%-- CSRF-Token --%>
                                                             <input type="hidden" name="csrf_token" value="${csrf_token}">
                                                             <label class="${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}">
-                                                                <input  onclick="document.getElementById('payer_Form${loan.id}').submit();" type="checkbox" name="payer_accept" value="${loan.id}" id="payer_accept" ${loan.payer_accept eq true ? "checked" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
+                                                                <input  onclick="document.getElementById('payer_Form${loan.id}').submit();" type="checkbox" name="payer_accept" value="${loan.id}" id="payer_accept" ${loan.payer_accept eq true ? "checked disabled" : ""} ${loan.payer.username eq pageContext.request.userPrincipal.name ? "" : "disabled"}>
                                                             </label>
                                                         </form>
                                                     </span>
@@ -191,22 +191,22 @@
                             <!-- Loans -->
                             <c:forEach items="${loans}" var="loan">
                                 <c:if test="${loan.payer_accept eq true and loan.receiver_accept eq true}">
-                                    <div class="card bg-muted text-muted mt-1 mb-1 cursor-pointer">
+                                    <<div class="card bg-light mt-1 mb-1">
                                         <div class="row m-0">
-                                            <div class="col-md-1">
+                                            <div class="col-md-1 pl-1 pr-0">
                                                 ${loan.payer.username eq pageContext.request.userPrincipal.name ? "<i class=\"fas fa-minus text-danger\"></i>" : "<i class=\"fas fa-plus text-success\"></i>"}
                                             </div>
                                             <div class="col-md-3 font-weight-bold">
                                                 ${utils.formatDouble(loan.amount)} €
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3 pl-0 pr-0">
                                                 ${utils.formatDate(loan.loanDate)}
                                             </div>
-                                            <div class="col">
+                                            <div class="col-md-3 pl-0 pr-0">
                                                 ${utils.formatTime(loan.loanTime)} Uhr
                                             </div>
-                                            <div class="col-md-1" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
-                                                <i class="fas fa-info-circle"> </i>
+                                            <div class="col-md float-right text-right pl-0 pr-1 cursor-pointer" onclick="document.location.href = '${pageContext.request.contextPath}/app/detail/${loan.id}/'">
+                                                <i class="fas fa-info-circle fa-lg"></i>&nbsp;<i class="far fa-comments ml-1 text-muted"></i><span class="text-muted">&nbsp;${fn:length(loan.comments)}</span>
                                             </div>
                                         </div>
                                         <div class="row m-0">
