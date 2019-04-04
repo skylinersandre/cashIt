@@ -34,6 +34,12 @@ Folgende Entwicklungswerkzeuge kommen dabei zum Einsatz:
  * [Git:](https://git-scm.com/") Versionsverwaltung zur gemeinsamen Arbeit am Quellcode
  * [TomEE:](https://tomee.apache.org/) Applikationsserver zum lokalen Testen der Anwendung
  * [Derby:](https://db.apache.org/derby/) In Java implementierte SQL-Datenbank zum Testen der Anwendung
+ 
+REST-Webserivce
+---------------
+
+Unter der URL `/cashIt/rest_test/` ist es möglich den REST-Webserivce zu testen. Hierfür wird ein bereits registrierter
+Benutzeraccount benötigt, da der Webserivce abgesichert ist.
 
 Copyright
 ---------

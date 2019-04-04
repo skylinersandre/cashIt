@@ -67,7 +67,7 @@ welche Berechtigungen erfordern. Am Ende wird dabei mit folgender Zeile
 
 Realm ist dabei nur ein schöner Begriff für eine beliebige Datenbank mit
 Benutzern und ihren Passwörtern und Berechtigungen. Ihre Definition gehört
-nicht zur Anwendung, da die Anwendung theoretisch ja bei unterschiedlichen 
+nicht zur Anwendung, da die Anwendung theoretisch ja bei unterschiedlichen
 Kunden in unterschiedlichen Systemlandschaften laufen könnte und nicht jeder
 Kunde denselben Authentifizierungsmechanismus nutzen möchte. Der eine Kunde
 freut sich vielleicht darüber, dass die Anwendung ihre eigenen Tabellen dafür
@@ -120,3 +120,9 @@ Das Beispiel geht dabei von der Derby-Beispieldatenbank aus, die Bestandteil
 von Netbeans ist. Für den Produktivbetrieb muss die Datenbankverbindung
 natürlich auf einen echten Datenbankserver (MariaDB, PostgreSQL, ...) gelenkt
 werden.
+
+REST-Webserivce
+---------------
+
+Unter der URL `/cashIt/rest_test/` ist es möglich den REST-Webserivce zu testen. Hierfür wird ein bereits registrierter
+Benutzeraccount benötigt, da der Webserivce abgesichert ist.
