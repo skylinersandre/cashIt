@@ -71,7 +71,6 @@ Creative Commons Namensnennung 4.0 International Lizenz.
             }
 
             async function getResults(url) {
-                document.getElementById("results").innerHTML = `<span style="color:blue;">Retrieving data ...</span>`;
 
                 let user_username = document.getElementById("user_username").value;
                 let user_password = document.getElementById("user_password").value;
@@ -81,6 +80,9 @@ Creative Commons Namensnennung 4.0 International Lizenz.
                     alert("Please enter Username and Password of your Account!");
                     return;
                 }
+
+                document.getElementById("results").innerHTML = `<span style="color:blue;">Retrieving data ...</span>`;
+
                 try {
                     let response = await fetch(url, {
                         method: "get",
