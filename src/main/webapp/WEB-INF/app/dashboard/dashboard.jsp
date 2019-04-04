@@ -191,7 +191,7 @@
                             <!-- Loans -->
                             <c:forEach items="${loans}" var="loan">
                                 <c:if test="${loan.payer_accept eq true and loan.receiver_accept eq true}">
-                                    <<div class="card bg-light mt-1 mb-1">
+                                    <div class="card bg-light mt-1 mb-1">
                                         <div class="row m-0">
                                             <div class="col-md-1 pl-1 pr-0">
                                                 ${loan.payer.username eq pageContext.request.userPrincipal.name ? "<i class=\"fas fa-minus text-danger\"></i>" : "<i class=\"fas fa-plus text-success\"></i>"}
